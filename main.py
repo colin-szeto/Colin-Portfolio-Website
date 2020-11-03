@@ -14,6 +14,10 @@ def chessGame():
     #function use Flask import (Jinga) to render an HTML template
     return render_template("chessGame.html")
 
+@app.route("/chessEmbed/")#for the dragable chess file
+def chessEmbed():
+    return render_template("chessEmbed.html")
+
 @app.route('/hello/')
 def helloThere():
     #function use Flask import (Jinga) to render an HTML template
