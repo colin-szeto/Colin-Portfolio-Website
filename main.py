@@ -9,6 +9,16 @@ def home():
     #function use Flask import (Jinga) to render an HTML template
     return render_template("home.html")
 
+@app.route('/chessGame/')
+def chessGame():
+    #function use Flask import (Jinga) to render an HTML template
+    return render_template("chessGame.html")
+
+@app.route('/hello/')
+def helloThere():
+    #function use Flask import (Jinga) to render an HTML template
+    return render_template("helloThere.html")
+
 if __name__ == "__main__":
     #runs the application on the repl development server
-    app.run(debug=True, port='3000', host='0.0.0.0')
+    app.run(debug=True)
