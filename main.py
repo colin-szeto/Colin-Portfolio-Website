@@ -1,5 +1,6 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
 from flask import Flask, render_template, request, redirect
+import data
 #create a Flask instance
 app = Flask(__name__)
 
@@ -35,6 +36,11 @@ def yourName():
         return render_template("yourName.html", display = returnName) #feeds it back into the template using jinja
     return redirect("/yourName")#redirects the user back to the page where they entered in the form
 #---------------------------------------------------------------------------------------
+
+@app.route("/project/string")
+def stringTest():
+    return render_template("task.html", projects=data.string())
+
 if __name__ == "__main__":
     #runs the application on the repl development server
     app.run(debug=True)
