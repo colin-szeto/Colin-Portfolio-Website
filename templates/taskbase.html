@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     {% block head %}
     <title></title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
     {% endblock %}
+    <link href="style.css" rel="stylesheet" type="/static/style.css" />
 </head>
 
-<body style="background-color:black;color:white;">
+<body style = "background-color: rgb(88, 189, 214); color: black;">
 <!--Navbar-->
 <nav class="navbar navbar-dark navbar-1 black">
 
@@ -31,13 +33,15 @@
         <!-- Links -->
         <div class="navbar-nav" style="font-size: large;">
             <a class="nav-link all" href="/all/">All</a>
-            <a class="nav-link runtime " href="/project/string">string</a>
-            <a class="nav-link planning" href="/project/planning">Planning</a>
+            <a class="nav-link code" href="/project/string/">String</a>
+            <a class="nav-link code" href="/project/billards/">Billards</a>
+            <!--
             <a class="nav-link journal" href="/project/journal">Journal</a>
             <a class="nav-link playground" href="/project/playground">Playground</a>
             <a class="nav-link code" href="/project/code">Code 1</a>
             <a class="nav-link code" href="/project/code2">Code 2</a>
             <a class="nav-link code" href="/">Return to Portfolio</a>
+            -->
         </div>
         <!-- Links -->
     </div>

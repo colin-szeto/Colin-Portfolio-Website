@@ -37,9 +37,17 @@ def yourName():
     return redirect("/yourName")#redirects the user back to the page where they entered in the form
 #---------------------------------------------------------------------------------------
 
-@app.route("/project/string")
-def stringTest():
-    return render_template("task.html", projects=data.string())
+@app.route("/project/string/")
+def string_route():
+    return render_template("task.html", data=data.string())
+
+@app.route("/project/billards/")
+def billards_route():
+    return render_template("task.html", data=data.billards())
+
+@app.route("/all/")
+def all_route():
+    return render_template("taskall.html", datalist=data.alldata())
 
 if __name__ == "__main__":
     #runs the application on the repl development server

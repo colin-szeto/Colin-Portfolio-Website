@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
+<!DOCTYPE html>
 <html lang="en">
 <!--data from a param in main.py -->
 {% set greeting = data["greeting"] %}
@@ -13,22 +11,23 @@
 {% extends "taskbase.html" %}
 
 {% block head %}
-<title>{{name}} | Person </title>
+    <title>{{name}} | Person </title>
+    <link href="style.css" rel="stylesheet" type="/static/style.css" />
 {% endblock %}
 
 {% if 'greeting' in data %}
-{% block greeting %}
-({{greeting}})
-{% endblock %}
+    {% block greeting %}
+        ({{greeting}})
+    {% endblock %}
 {% endif %}
 
 
 {% block body %}
 <!-- observe usage jinja variables -->
-<h2>Assignment: <span style='color:midnightblue;'>{{name}}</span></h2>
-<h3>Due date: <span style='color:midnightblue;'>{{doa}}</span></h3>
-<h3>Task: <span style='color:midnightblue;'>{{job}}</span></h3>
-<p><span style='color:midnightblue;'>{{story}}</span></p>
+<h2>Assignment: <span class="colorTextShow">{{name}}</span></h2>
+<h3>Due date: <span class="colorTextShow">{{doa}}</span></h3>
+<h3>Task: <span class="colorTextShow">{{job}}</span></h3>
+<p><span class="colorTextShow">{{story}}</span></p>
 {% if 'embed' in data %}
 <div class="embed-responsive embed-responsive-4by3">
     <iframe class="embed-responsive-item" src={{embed}}></iframe>
@@ -43,5 +42,3 @@
 
 
 </html>
-
-{% endblock %}
