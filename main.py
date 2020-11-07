@@ -45,6 +45,26 @@ def string_route():
 def billards_route():
     return render_template("task.html", data=data.billards())
 
+@app.route("/project/ship/")
+def ship_route():
+    return render_template("task.html", data=data.ship())
+
+@app.route("/project/chessOO/")
+def chessOO_route():
+    return render_template("task.html", data=data.chessOO())
+
+@app.route("/project/pawnANI/")
+def pawnANI_route():
+    return render_template("task.html", data=data.pawnANI())
+
+@app.route("/project/oldWeb/")
+def oldWeb_route():
+    return render_template("task.html", data=data.oldWebsite())
+
+@app.route("/project/chessDrag/")
+def chessDrag_route():
+    return render_template("task.html", data=data.chessDrag())
+
 @app.route("/all/")
 def all_route():
     return render_template("taskall.html", datalist=data.alldata())

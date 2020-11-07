@@ -6,13 +6,14 @@
 {% set doa = data["doa"] %}
 {% set job = data["job"] %}
 {% set embed = data["embed"] %}
+{% set story = data["description"] %}
+{% set titleImage = data["titleImage"] %}
 {% set gist = data["gist"] %}
-
 {% extends "taskbase.html" %}
 
 {% block head %}
     <title>{{name}} | Person </title>
-    <link href="style.css" rel="stylesheet" type="/static/style.css" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
 {% if 'greeting' in data %}
@@ -23,6 +24,13 @@
 
 
 {% block body %}
+
+{% if 'titleImage' in data %}
+    {% for data in titleImage %}
+        <p>{{ data }} </p>
+    {% endfor %}
+{% endif %}
+
 <!-- observe usage jinja variables -->
 <h2>Assignment: <span class="colorTextShow">{{name}}</span></h2>
 <h3>Due date: <span class="colorTextShow">{{doa}}</span></h3>
