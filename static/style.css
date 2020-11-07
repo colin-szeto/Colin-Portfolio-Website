@@ -3,10 +3,10 @@
     color: black;
 }
 
-.colorTextShow {
-    color: red;
+.icon {
+    color: rgb(255, 212, 20);
 }
 
-h5 {
-    color: green;
+b {
+    font-family: "Helvetica", sans-serif;
 }

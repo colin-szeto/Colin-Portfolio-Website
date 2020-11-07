@@ -16,6 +16,7 @@
 {% set job = data["job"] %}
 {% set embed = data["embed"] %}
 {% set gist = data["gist"] %}
+{% set story = data["description"] %}
 
 <h1>{{greeting}} <span style='color:orangered;'></span></h1>
 <ol>
@@ -29,7 +30,6 @@
     {% endif %}
     {% if 'gist' in data %}
     <li>{{job}} link: <span style='color:midnightblue;'>{{gist}}</span></li>
-
     {% endif %}
 
 </ol>

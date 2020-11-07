@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     #function use Flask import (Jinga) to render an HTML template
-    return render_template("home.html")
+    return render_template("home.html", data=data.ship(), data2=data.chessOO(), data3=data.billards())
 
 @app.route('/chessGame/')
 def chessGame():
