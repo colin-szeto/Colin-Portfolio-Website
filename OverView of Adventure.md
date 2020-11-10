@@ -34,6 +34,36 @@ the code is a remix of an attmept to create a chess baord from dictonaries. The 
     - routesList an empty list that we use to append reformated keys to to pass into chessDict.html template to label and identify the buttons
     - https://bit.ly/36pGC81 - this function "preCursor" takes the keys from keysBoard and converts the keys into routes that the buttons can use to redirect the user ie: "a8" is turned into "/a8"
     - everything else in the file is work in progress to support a chess game 
+    
+3. "main.py" - route storage - https://bit.ly/3lkju0W
+    - specifcally here: https://bit.ly/3lkju0W
+    - this first app.route - https://bit.ly/3pheVGM - redirects the user the the adventure homepage
+    - second app.route - https://bit.ly/3phftMT - creates the board (shows all of the buttons that the user can press)
+        - https://bit.ly/2JUIVIz - here we see the syntax for the board beign assgined as well as the hint for jinja to format in the template
+    - third route - https://bit.ly/38uM0JI - this route provides user with the second hint, the url should be seen http://127.0.0.1:5000/id=c8/
+    - fourth route - https://bit.ly/3llyoE0 - this route provides user with the second hint, the url should be seen http://127.0.0.1:5000/id=c8/id=c6/
+    - fifth route - https://bit.ly/35g89Jr - the url will be http://127.0.0.1:5000/id=c8/id=c6/id=c4/
+        - this is the win screen 3 lines below, the displayCLicked = "You found the treasure!" and displays an image of the treasure chest =
+    - 404 route - https://bit.ly/3lhRZF1 - this occurs when an non exsisting route is selected ie: http://127.0.0.1:5000/id=c8/id=a7/
+        - the route http://127.0.0.1:5000/id=c8/id=a7/ is not defined in the main.py file and therefore will provide the player with an 404 error, using this know logic, this redirects the users to the "404.html" page which communicates to the player that they have died and are provided the opportunity to respawn    
+        
+4. "chessDict.html" - template - adventure home screen - https://bit.ly/3pfPNAb
+    - https://bit.ly/3pbHm97 - this is the first form notice the tag <form method="post"> this is the commmunication potocol that the form is using, post uses urls to send data
 
+""" <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" /> """
 
+    - class="button" defines what the user interacts with
+    - type="submit" defines how the user interacts with it
+    - formaction="/createBoard" redirects the user to: https://bit.ly/3phftMT - creates the board (shows all of the buttons that the user can press
+        
+    - https://bit.ly/3khvGhA this form tag encloses theinja logic that we use to itterate through the "oard"dictonary defined in "hessData.py"
+     
+                {% for header in rowList %} <!-- using jinja to make as many buttons as included in the board dictonary -->
+                    <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+                {% endfor %}
+    
+    - class="button" defines what the user interacts with
+    - type="submit" defines how the user interacts with it\
+    - value={{header}} is the value that the users sees ie: "a8"
+    - formaction={{keyRoutes[header]}} redirects the user to: https://bit.ly/3phftMT - creates the board (shows all of the buttons that the user can press
 
