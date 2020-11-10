@@ -1,8 +1,7 @@
-# Adventure using POST overview
+# Adventure using POST Overview: https://bit.ly/3khB2JI 
 
 the objective of this document is to provide a framework and explination of a flashy piece of code which will allow students to see an application using post client side (without communicating to the server). Expected uderstanding of routes, jinja, intergration of python and html. Please excuse any spelling mistakes.
 
-* here is a video overview of the Adventure code: https://bit.ly/3khB2JI 
 * here is a video overviewing the basics of POST: https://bit.ly/35fw1gt
 * line by line explination of POST here: https://bit.ly/3lsX0KU
 
