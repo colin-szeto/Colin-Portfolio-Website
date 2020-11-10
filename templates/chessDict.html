@@ -1,0 +1,77 @@
+{% extends "taskbase.html" %}
+
+{% block body %}
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<!--
+{% for data in displayBoard %}
+<p>{{ data }} </p>
+<p><input class="button" type ="submit" formaction="/printName" value={{data}} /></p>
+{% endfor %}
+-->
+<form method="post" >
+    <input class="button" type ="submit" formaction="/createBoard" value="Create board" />
+</form>
+
+<!-- the working version
+<form method="post" id="chessInput" >
+    <table>
+        <tr>
+            {% for header in rowList %}
+            <th><input class="button" type ="submit" formaction=/helloThere value={{header}} id={{header}}/></th>
+            {% endfor %}
+        </tr>
+    </table>
+</form>-->
+
+<form method="post" id="chessInput" >
+    <table>
+        <tr>
+            {% for header in rowList %}
+            <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}}  id={{header}}/></th>
+            {% endfor %}
+        </tr>
+    </table>
+</form>
+
+
+
+{{ keyRoutes }}
+
+<!--
+<button onclick="myFunction(event)">first move</button>
+
+<p id="displayKey"></p>
+
+<script>
+function myFunction(key) {
+  document.getElementById("chessInput").action = "/heyheyhey";
+  document.getElementById("displayKey").innerHTML = key;
+}
+</script>
+
+{{ keyRoutes }}
+{{ displayClicked }}
+
+-->
+<!--
+<table>
+    <tr>
+        {% for header in displayBoard %}
+        <th><input class="button" type ="submit" formaction="/printName" value={{header}} /></th>
+        {% endfor %}
+    </tr>
+
+</table>
+-->
+</body>
+
+</html>
+
+{% endblock %}

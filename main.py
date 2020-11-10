@@ -1,6 +1,8 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import data
+from data import board, keysBoard
+from itertools import islice #for the printing of the chess board
 #create a Flask instance
 app = Flask(__name__)
 
@@ -32,8 +34,10 @@ def index():
 def yourName():
     if request.method == 'POST': #if the meathod is post
         form = request.form
-        returnName = str(form['inputName']) #takes the input and converts it to a string, if it was a integer data type be sure to change str to int
-        return render_template("yourName.html", display = returnName) #feeds it back into the template using jinja
+        first = str(form['inputName']) #takes the input and converts it to a string, if it was a integer data type be sure to change str to int
+        last = str(form['inputLast'])
+        allName = first + " " + last
+        return render_template("yourName.html", display = allName) #feeds it back into the template using jinja
     return redirect("/yourName")#redirects the user back to the page where they entered in the form
 #---------------------------------------------------------------------------------------
 
@@ -64,6 +68,38 @@ def oldWeb_route():
 @app.route("/project/chessDrag/")
 def chessDrag_route():
     return render_template("task.html", data=data.chessDrag())
+
+@app.route("/project/chessDict/")
+def chessDict_route():
+    return render_template("chessDict.html")
+
+@app.route("/createBoard", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def createBoard():
+    if request.method == 'POST': #if the meathod is post
+        form = request.form
+        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard)) #feeds it back into the template using jinja
+    return redirect("/project/chessDict/")
+
+@app.route("/helloClicked", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def helloClicked():
+    if request.method == 'POST':
+        form = request.form
+        return render_template("chessDict.html", rowList=board, displayClicked="Hello!")
+    return redirect("/project/chessDict/")
+
+@app.route("/project/login/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def login():
+    if request.method =="POST":
+        user = request.form["nm"]
+        render_template("user.html", userDisplay=user)
+        return  redirect("/project/login/")
+        #return redirect(url_for("user", usr=user))
+    else:
+        return render_template("login.html")
+
+@app.route("/<usr>")
+def user(usr):
+    return render_template("user.html", userDisplay=usr)
 
 @app.route("/all/")
 def all_route():
