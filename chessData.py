@@ -26,9 +26,9 @@ def preCursor(keys):#create the formaction list to pick from
         a = a+1
     return routesList
 
-"""
-endRoutesList =[]#empty list to fill with "/id=c4/" not implemented yet
 
+endRoutesList =[]#empty list to fill with "/id=c4/" not implemented yet
+"""
 def routeMaker(keys):#creates the paths that main.py has to create to respond to chessDict, this has not been immplemnted yet
     a = 0
     for x in keys:
