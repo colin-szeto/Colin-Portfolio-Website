@@ -13,7 +13,7 @@ the code is a remix of an attmept to create a chess baord from dictonaries. The 
 1."chessDict.html" - https://bit.ly/3pfPNAb - the adventure home screen (template) 
 2. "main.py" - https://bit.ly/3lkju0W - route storage
 3. "chessData.py" - https://bit.ly/3pg1yXC - where the story is controlled
-4. "404.html" -https://bit.ly/3pbCzEF- the lose screen where player is provided opportunity to go back to the adveture home screen
+4. "404.html" - https://bit.ly/3pbCzEF - the lose screen where player is provided opportunity to go back to the adveture home screen
 
 ### the playthrough goes as follows
 1. start game
@@ -50,20 +50,36 @@ the code is a remix of an attmept to create a chess baord from dictonaries. The 
 4. "chessDict.html" - template - adventure home screen - https://bit.ly/3pfPNAb
     - https://bit.ly/3pbHm97 - this is the first form notice the tag <form method="post"> this is the commmunication potocol that the form is using, post uses urls to send data
 
-""" <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" /> """
+                <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" /> 
 
     - class="button" defines what the user interacts with
     - type="submit" defines how the user interacts with it
     - formaction="/createBoard" redirects the user to: https://bit.ly/3phftMT - creates the board (shows all of the buttons that the user can press
         
-    - https://bit.ly/3khvGhA this form tag encloses theinja logic that we use to itterate through the "oard"dictonary defined in "hessData.py"
+    - https://bit.ly/3khvGhA this form tag encloses the jinja logic that we use to itterate through the "oard"dictonary defined in "hessData.py"
      
                 {% for header in rowList %} <!-- using jinja to make as many buttons as included in the board dictonary -->
                     <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
                 {% endfor %}
-    
+ 
     - class="button" defines what the user interacts with
     - type="submit" defines how the user interacts with it\
     - value={{header}} is the value that the users sees ie: "a8"
     - formaction={{keyRoutes[header]}} redirects the user to: https://bit.ly/3phftMT - creates the board (shows all of the buttons that the user can press
+     
+     for reference if you want to edit the css styles of the code:
+     
+                {{ displayClicked }} <!-- this line is to communicate hints to the player -->
 
+                <img src="{{ displayImage }}"> <!-- this is to display the win image -->
+
+
+## Ending thoughts
+
+this code was brought together through testing and playing around with code. Taking intential patterns of code 404 page and using it to one's advantage
+
+can you remix this code to include multiple death screens using randrange() within functions which redirect and pass information into templates
+can you add a timer with js to allow for people to complete
+can you add in multiple win conditions
+can you reduce the amout of items within the diconary to four to represent forward left right back 
+can you change the logic in data.py and main.py to use the buttons as interactions
