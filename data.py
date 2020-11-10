@@ -127,7 +127,8 @@ def convertToRoute(keys):#places "/" to the front of each key
     return keys"""
 keysBoard, values = zip(*board.items()) #isolates the board keys
 routesList =[]
-def preCursor(keys):
+endRoutesList =[]
+def preCursor(keys):#create the formaction list to pick from
     a = 0
     for x in keys:
         input = str(keys[a])
@@ -136,10 +137,19 @@ def preCursor(keys):
         a = a+1
     return routesList
 
-def chunks(data, SIZE=10000):
+def routeMaker(keys):#creates the paths that main.py has to create to respond to chessDict
+    a = 0
+    for x in keys:
+        input = str(keys[a])
+        final = "/id=" + input + "/"
+        routesList.append(final)
+        a = a+1
+    return endRoutesList
+
+"""def chunks(data, SIZE=10000):
     it = iter(data)
     for i in range(0, len(data), SIZE):
-        yield {k:data[k] for k in islice(it, SIZE)}
+        yield {k:data[k] for k in islice(it, SIZE)}"""
 
 rowList = []
 def createBoard(board):

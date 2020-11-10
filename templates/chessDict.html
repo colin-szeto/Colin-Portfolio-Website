@@ -16,7 +16,7 @@
 {% endfor %}
 -->
 <form method="post" >
-    <input class="button" type ="submit" formaction="/createBoard" value="Create board" />
+    <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" />
 </form>
 
 <!-- the working version
@@ -34,16 +34,20 @@
     <table>
         <tr>
             {% for header in rowList %}
-            <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}}  id={{header}}/></th>
+            <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
             {% endfor %}
         </tr>
     </table>
 </form>
+{{ displayClicked }}
 
+<h1>{{ displayRoutes }}</h1>
 
+<img src="{{ displayImage }}">
 
+<!--
 {{ keyRoutes }}
-
+-->
 <!--
 <button onclick="myFunction(event)">first move</button>
 
@@ -57,7 +61,7 @@ function myFunction(key) {
 </script>
 
 {{ keyRoutes }}
-{{ displayClicked }}
+
 
 -->
 <!--

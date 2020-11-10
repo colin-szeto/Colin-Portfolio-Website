@@ -1,7 +1,7 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
 from flask import Flask, render_template, request, redirect, url_for
 import data
-from data import board, keysBoard
+from data import board, keysBoard, routesList, endRoutesList
 from itertools import islice #for the printing of the chess board
 #create a Flask instance
 app = Flask(__name__)
@@ -69,24 +69,6 @@ def oldWeb_route():
 def chessDrag_route():
     return render_template("task.html", data=data.chessDrag())
 
-@app.route("/project/chessDict/")
-def chessDict_route():
-    return render_template("chessDict.html")
-
-@app.route("/createBoard", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
-def createBoard():
-    if request.method == 'POST': #if the meathod is post
-        form = request.form
-        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard)) #feeds it back into the template using jinja
-    return redirect("/project/chessDict/")
-
-@app.route("/helloClicked", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
-def helloClicked():
-    if request.method == 'POST':
-        form = request.form
-        return render_template("chessDict.html", rowList=board, displayClicked="Hello!")
-    return redirect("/project/chessDict/")
-
 @app.route("/project/login/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
 def login():
     if request.method =="POST":
@@ -104,6 +86,58 @@ def user(usr):
 @app.route("/all/")
 def all_route():
     return render_template("taskall.html", datalist=data.alldata())
+
+
+#----------------Here is where the chess based off dict begins -----------------------------------
+
+@app.route("/project/chessDict/")
+def chessDict_route():
+    return render_template("chessDict.html")
+
+@app.route("/createBoard", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def createBoard():
+    if request.method == 'POST': #if the meathod is post
+        form = request.form
+        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="rhymes with Kate") #feeds it back into the template using jinja
+    return redirect("/project/chessDict/")
+
+@app.route("/helloClicked", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def helloClicked():
+    if request.method == 'POST':
+        form = request.form
+        return render_template("chessDict.html", rowList=board, displayClicked="Hello!")
+    return redirect("/project/chessDict/")
+
+#may not work
+"""data.routeMaker(keysBoard)#creating the routes for the chess cells
+for x in endRoutesList:
+    @app.route(x, methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+    def returnClicked():
+        if request.method == 'POST':
+            form = request.form
+            return render_template("chessDict.html", rowList=board, displayClicked=x)
+        return redirect("/project/chessDict/")"""
+
+@app.route("/id=c8/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def c8Clicked():
+    if request.method == 'POST':
+        form = request.form
+        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="I feel sea sick")
+    return redirect("/project/chessDict/")
+
+@app.route("/id=c8/id=c6/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def c8c6Clicked():
+    if request.method == 'POST':
+        form = request.form
+        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="Use this to blow open the door")
+    return redirect("/project/chessDict/")
+
+@app.route("/id=c8/id=c6/id=c4/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def c8c6c1Clicked():
+    if request.method == 'POST':
+        form = request.form
+        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="You fount the treasure", displayImage="https://images-na.ssl-images-amazon.com/images/I/71vDVbJGotL._AC_SL1100_.jpg")
+    return redirect("/project/chessDict/")
 
 if __name__ == "__main__":
     #runs the application on the repl development server
