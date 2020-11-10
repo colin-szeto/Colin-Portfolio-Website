@@ -1,79 +1,33 @@
 {% extends "taskbase.html" %}
 
 {% block body %}
-
+<!-- this is the template that allows for the user to  -->
 <head>
     <meta charset="UTF-8">
     <title></title>
 </head>
 <body>
 
-
-<!--
-{% for data in displayBoard %}
-<p>{{ data }} </p>
-<p><input class="button" type ="submit" formaction="/printName" value={{data}} /></p>
-{% endfor %}
--->
-<form method="post" >
-    <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" />
+<form method="post" > <!-- using the post tag to identify that this is for post -->
+    <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" /><!-- this the button that allows the user to buld the board -->
 </form>
 
-<!-- the working version
-<form method="post" id="chessInput" >
+<form method="post" id="chessInput"> <!-- this is another post tag to allow for user interaction -->
     <table>
         <tr>
-            {% for header in rowList %}
-            <th><input class="button" type ="submit" formaction=/helloThere value={{header}} id={{header}}/></th>
-            {% endfor %}
-        </tr>
-    </table>
-</form>-->
-
-<form method="post" id="chessInput" >
-    <table>
-        <tr>
-            {% for header in rowList %}
+            {% for header in rowList %} <!-- using jinja to make as many buttons as included in the board dictonary -->
             <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
             {% endfor %}
         </tr>
     </table>
 </form>
-{{ displayClicked }}
 
-<h1>{{ displayRoutes }}</h1>
+{{ displayClicked }} <!-- this line is to communicate hints to the player -->
 
-<img src="{{ displayImage }}">
+<h1>{{ displayRoutes }}</h1> <!-- this line is for debuggin -->
 
-<!--
-{{ keyRoutes }}
--->
-<!--
-<button onclick="myFunction(event)">first move</button>
+<img src="{{ displayImage }}"> <!-- this is to display the win image -->
 
-<p id="displayKey"></p>
-
-<script>
-function myFunction(key) {
-  document.getElementById("chessInput").action = "/heyheyhey";
-  document.getElementById("displayKey").innerHTML = key;
-}
-</script>
-
-{{ keyRoutes }}
-
-
--->
-<!--
-<table>
-    <tr>
-        {% for header in displayBoard %}
-        <th><input class="button" type ="submit" formaction="/printName" value={{header}} /></th>
-        {% endfor %}
-    </tr>
-
-</table>
--->
 </body>
 
 </html>

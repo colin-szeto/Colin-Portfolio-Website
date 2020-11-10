@@ -1,7 +1,10 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
+import random
+
 from flask import Flask, render_template, request, redirect, url_for
 import data
-from data import board, keysBoard, routesList, endRoutesList
+import chessData
+from chessData import board, keysBoard, routesList, endRoutesList, lose
 from itertools import islice #for the printing of the chess board
 #create a Flask instance
 app = Flask(__name__)
@@ -98,46 +101,38 @@ def chessDict_route():
 def createBoard():
     if request.method == 'POST': #if the meathod is post
         form = request.form
-        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="rhymes with Kate") #feeds it back into the template using jinja
-    return redirect("/project/chessDict/")
+        return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="rhymes with Kate") #feeds it back into the template using jinja
+    return redirect("/project/chessDict/") #redirects to the adventure page
 
-@app.route("/helloClicked", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+"""@app.route("/helloClicked", methods=['GET','POST']) #this was for testing pourposes
 def helloClicked():
     if request.method == 'POST':
         form = request.form
         return render_template("chessDict.html", rowList=board, displayClicked="Hello!")
-    return redirect("/project/chessDict/")
+    return redirect("/project/chessDict/")"""
 
-#may not work
-"""data.routeMaker(keysBoard)#creating the routes for the chess cells
-for x in endRoutesList:
-    @app.route(x, methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
-    def returnClicked():
-        if request.method == 'POST':
-            form = request.form
-            return render_template("chessDict.html", rowList=board, displayClicked=x)
-        return redirect("/project/chessDict/")"""
-
-@app.route("/id=c8/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+@app.route("/id=c8/", methods=['GET','POST']) #/id=c8/ is the route that allows user to continue
 def c8Clicked():
     if request.method == 'POST':
-        form = request.form
-        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="I feel sea sick")
+        return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="I feel c sick or was it c six?")
     return redirect("/project/chessDict/")
 
-@app.route("/id=c8/id=c6/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+@app.route("/id=c8/id=c6/", methods=['GET','POST']) #/id=c6/ is the next route that the user is allowed to continue
 def c8c6Clicked():
     if request.method == 'POST':
-        form = request.form
-        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="Use this to blow open the door")
+        return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="Use this to blow open the door")
     return redirect("/project/chessDict/")
 
-@app.route("/id=c8/id=c6/id=c4/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+@app.route("/id=c8/id=c6/id=c4/", methods=['GET','POST']) #/id=c4/ is the win screen, see below the values that are returned
 def c8c6c1Clicked():
     if request.method == 'POST':
-        form = request.form
-        return render_template("chessDict.html", rowList=board, keyRoutes=data.preCursor(keysBoard), displayClicked="You fount the treasure", displayImage="https://images-na.ssl-images-amazon.com/images/I/71vDVbJGotL._AC_SL1100_.jpg")
+        return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="You found the treasure!", displayImage="https://images-na.ssl-images-amazon.com/images/I/71vDVbJGotL._AC_SL1100_.jpg")
     return redirect("/project/chessDict/")
+
+@app.errorhandler(404) #we are using the 404 as the fail screen
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html')
 
 if __name__ == "__main__":
     #runs the application on the repl development server
