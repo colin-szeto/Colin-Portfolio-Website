@@ -24,16 +24,16 @@ the code is a remix of an attmept to create a chess baord from dictonaries. The 
 
 ### going through the syntax
 1. "404.html" - loose screen -  https://bit.ly/3pbCzEF
-  - a simple screen, syntax within code displays a message to prompt the player that they died
-  - linked text to allow the user to click back to the adventure home screen 
-  - image to futher communicate to the player that they have died
+    - a simple screen, syntax within code displays a message to prompt the player that they died
+    - linked text to allow the user to click back to the adventure home screen 
+    - image to futher communicate to the player that they have died
 
 2. "chessData.py" - controlling the story - https://bit.ly/3pg1yXC
-  - promiently at the top of the code is the board dicotnary, again this is a dictonary used to represent the chess board, users can remove any of the keys and terms that are not the win contiditons to allow for less square/options/buttons to be displayed to the user through the play through 
-  - https://bit.ly/3n6JX2k - this bit of code splits up the dicotnary to only contain the keys in the dictonaries (keys in this cas are "a8", "c8", "e4" etc
-  - routesList an empty list that we use to append reformated keys to to pass into chessDict.html template to label and identify the buttons
-  - https://bit.ly/36pGC81 - this function "preCursor" takes the keys from keysBoard and converts the keys into routes that the buttons can use to redirect the user ie: "a8" is turned into "/a8"
-  - everything else in the file is work in progress to support a chess game 
+    - promiently at the top of the code is the board dicotnary, again this is a dictonary used to represent the chess board, users can remove any of the keys and terms that are not the win contiditons to allow for less square/options/buttons to be displayed to the user through the play through 
+    - https://bit.ly/3n6JX2k - this bit of code splits up the dicotnary to only contain the keys in the dictonaries (keys in this cas are "a8", "c8", "e4" etc
+    - routesList an empty list that we use to append reformated keys to to pass into chessDict.html template to label and identify the buttons
+    - https://bit.ly/36pGC81 - this function "preCursor" takes the keys from keysBoard and converts the keys into routes that the buttons can use to redirect the user ie: "a8" is turned into "/a8"
+    - everything else in the file is work in progress to support a chess game 
 
 
 
