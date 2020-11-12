@@ -5,8 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import data
 import chessData
 from chessData import board, keysBoard, routesList, endRoutesList, lose
-from itertools import islice #for the printing of the chess board
-#create a Flask instance
+from chessData import board1, board2, board3, board4, board5, board6, board7, board8, allBoard
 app = Flask(__name__)
 
 #connects default URL of server to a python function
@@ -137,7 +136,7 @@ def chessDictTable_route():
 def createBoardTable():
     if request.method == 'POST': #if the meathod is post
         form = request.form
-        return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="")
+        return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="", board1=board1, board2=board2, board3=board3, board4=board4, board5=board5, board6=board6, board7=board7, board8=board8, allBoard=allBoard)#
     return redirect("/project/chessDictTable/") #redirects to format into the chess board
 
 @app.errorhandler(404) #we are using the 404 as the fail screen

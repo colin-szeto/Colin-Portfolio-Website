@@ -6,16 +6,20 @@
     <meta charset="UTF-8">
     <title></title>
 
+    <!--even style is green, odd styles is white -->
     <style>
         .even {
-        background-color: #4CAF50; #green
+        background-color: #4CAF50;
         border: none;
         color: white;
+        }
 
         .odd {
-        background-color: #779455; #off white
+        background-color: #d6d3ba;
         border: none;
+        color: black;
         }
+
     </style>
 </head>
 <body>
@@ -26,15 +30,22 @@
 
 <form method="post" id="chessInput"> <!-- this is another post tag to allow for user interaction -->
     <table>
-        <tr>
-            {% for header in rowList %} <!-- using jinja to make as many buttons as included in the board dictonary -->
-            <th><input class="{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th> <!--class="{{ loop.cycle('odd', 'even') }}" this will help -->
-            {% endfor %}
+        {%for row in allBoard%}
+        <tr><!-- if row == board 5 -->
+            {% if loop.index is divisibleby 2 %}
+                {% for header in row %} <!-- if the row is even, 8,6,4,2 -->
+                    <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+                {% endfor %}
+            {% else %}
+                {% for header in row %}   <!-- if the row is odd, 7,5,3,1 -->
+                    <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+                {% endfor %}
+            {% endif %}
         </tr>
+        {% endfor %}
     </table>
 
 </form>
-
 {{ displayClicked }} <!-- this line is to communicate hints to the player -->
 
 <h1>{{ displayRoutes }}</h1> <!-- this line is for debuggin -->
