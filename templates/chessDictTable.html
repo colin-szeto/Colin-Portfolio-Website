@@ -5,18 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+
+    <style>
+        .even {
+        background-color: #4CAF50; #green
+        border: none;
+        color: white;
+
+        .odd {
+        background-color: #779455; #off white
+        border: none;
+        }
+    </style>
 </head>
 <body>
 
 <form method="post" > <!-- using the post tag to identify that this is for post -->
-    <input class="button" type ="submit" formaction="/createBoard" value="Go on an adventure!" /><!-- this the button that allows the user to buld the board -->
+    <input class="button" type ="submit" formaction="/createBoardTable" value="Create the Chess Baord" /><!-- this the button that allows the user to buld the board -->
 </form>
 
 <form method="post" id="chessInput"> <!-- this is another post tag to allow for user interaction -->
     <table>
         <tr>
             {% for header in rowList %} <!-- using jinja to make as many buttons as included in the board dictonary -->
-            <th><input class="button" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+            <th><input class="{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th> <!--class="{{ loop.cycle('odd', 'even') }}" this will help -->
             {% endfor %}
         </tr>
     </table>

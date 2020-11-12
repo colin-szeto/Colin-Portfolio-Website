@@ -93,7 +93,7 @@ def all_route():
 
 #----------------Here is where the chess based off dict begins -----------------------------------
 
-@app.route("/project/chessDict/")
+"""@app.route("/project/chessDict/") #will not be supporting the logic of the adventure game anymore
 def chessDict_route():
     return render_template("chessDict.html")
 
@@ -104,12 +104,12 @@ def createBoard():
         return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="rhymes with Kate") #feeds it back into the template using jinja
     return redirect("/project/chessDict/") #redirects to the adventure page
 
-"""@app.route("/helloClicked", methods=['GET','POST']) #this was for testing pourposes
+@app.route("/helloClicked", methods=['GET','POST']) #this was for testing pourposes
 def helloClicked():
     if request.method == 'POST':
         form = request.form
         return render_template("chessDict.html", rowList=board, displayClicked="Hello!")
-    return redirect("/project/chessDict/")"""
+    return redirect("/project/chessDict/")
 
 @app.route("/id=c8/", methods=['GET','POST']) #/id=c8/ is the route that allows user to continue
 def c8Clicked():
@@ -127,7 +127,18 @@ def c8c6Clicked():
 def c8c6c1Clicked():
     if request.method == 'POST':
         return render_template("chessDict.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="You found the treasure!", displayImage="https://images-na.ssl-images-amazon.com/images/I/71vDVbJGotL._AC_SL1100_.jpg")
-    return redirect("/project/chessDict/")
+    return redirect("/project/chessDict/")"""
+
+@app.route("/project/chessDictTable/") #/id=c4/ is the win screen, see below the values that are returned
+def chessDictTable_route():
+    return render_template("chessDictTable.html")
+
+@app.route("/createBoardTable", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
+def createBoardTable():
+    if request.method == 'POST': #if the meathod is post
+        form = request.form
+        return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="")
+    return redirect("/project/chessDictTable/") #redirects to format into the chess board
 
 @app.errorhandler(404) #we are using the 404 as the fail screen
 def page_not_found(e):
@@ -135,5 +146,4 @@ def page_not_found(e):
     return render_template('404.html')
 
 if __name__ == "__main__":
-    #runs the application on the repl development server
     app.run(debug=True)
