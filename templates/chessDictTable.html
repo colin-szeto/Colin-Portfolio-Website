@@ -21,7 +21,6 @@
         color: black;
         font-family: calibri, Helvetica, sans-serif;
         }
-
     </style>
 </head>
 <body>
@@ -36,11 +35,11 @@
         <tr><!-- if row == board 5 -->
             {% if loop.index is divisibleby 2 %}
                 {% for header in row %} <!-- if the row is even, 8,6,4,2 -->
-                    <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+                    <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value={{header}} inputName="firstButton" formaction={{header}}  id={{header}}/></th>
                 {% endfor %}
             {% else %}
                 {% for header in row %}   <!-- if the row is odd, 7,5,3,1 -->
-                    <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} formaction={{keyRoutes[header]}} id={{header}}/></th>
+                    <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} inputName="firstButton" formaction={{header}}  id={{header}}/></th>
                 {% endfor %}
             {% endif %}
         </tr>
@@ -48,9 +47,14 @@
     </table>
 </form>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/50px-Chess_rdt45.svg.png" alt = "black rook">
-
 {{ displayClicked }} <!-- this line is to communicate hints to the player -->
+<table>
+    {% for row in movelist %}
+    <tr>
+        <th>{{row}}</th>
+    </tr>
+    {% endfor %}
+</table>
 
 <h1>{{ displayRoutes }}</h1> <!-- this line is for debuggin -->
 

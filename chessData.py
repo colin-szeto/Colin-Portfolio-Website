@@ -40,7 +40,7 @@ def sliceValues(values):#creates the list to translate into pieces
         a = a + 1
     return imagesList
 
-def replaceValues(list):
+"""def replaceValues(list): #using images will not work as there is no defalut image with a blank square
     for x in list:
         if x == "BR":
             imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/50px-Chess_rdt45.svg.png")#black rook
@@ -67,9 +67,9 @@ def replaceValues(list):
         if x == "wp":
             imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt45.svg/50px-Chess_plt45.svg.png")
         if x == "  ":
-            imagesInList.append(" ")
+            imagesInList.append(" ")"""
+# unicode chess pieces: https://en.wikipedia.org/wiki/Chess_symbols_in_Unicode
 
-"""
 def replaceValues(list):
   for x in list:
     if x == "BR":
@@ -85,22 +85,19 @@ def replaceValues(list):
     if x == "bp":
       imagesInList.append("♟")
     if x == "WR":
-      imagesInList.append("♜")
+      imagesInList.append("♖")
     if x == "WN":
-      imagesInList.append("♞")
+      imagesInList.append("♘")
     if x == "WB":
-      imagesInList.append("♝")
+      imagesInList.append("♗")
     if x == "WQ":
-      imagesInList.append("♛")
+      imagesInList.append("♕")
     if x == "WK":
-      imagesInList.append("♚")
+      imagesInList.append("♔")
     if x == "wp":
-      imagesInList.append("♟")
+      imagesInList.append("♙")
     if x == "  ":
       imagesInList.append(" ")
-      """
-
-endRoutesList =[]#empty list to fill with "/id=c4/" not implemented yet
 
 #the row dictonaries that the board is split out two
 board1 = {}
@@ -132,6 +129,12 @@ for square,piece in board.items(): #spliting the dictonary into 8 dictonaries, i
 
 allBoard = [board8, board7, board6, board5, board4, board3, board2, board1]
 
-""""for i in allBoard:
-    if int(i[5])%2 == 1:
-        i.update({first})"""
+#keeping track of the moves
+movelist = []
+
+def movesdata(toAppend):
+    movelist.append(toAppend)
+    sets = [movelist[x:x+2] for x in range(0, len(movelist), 2)]
+    return sets
+
+sets = [movelist[x:x+2] for x in range(0, len(movelist), 2)]
