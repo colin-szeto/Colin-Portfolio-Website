@@ -21,6 +21,12 @@
         color: black;
         font-family: calibri, Helvetica, sans-serif;
         }
+        .white {
+        color: white;
+        }
+        .black {
+        color: black;
+        }
     </style>
 </head>
 <body>
@@ -49,10 +55,15 @@
 
 {{ displayClicked }} <!-- this line is to communicate hints to the player -->
 <table>
-    {% for row in movelist %}
     <tr>
-        <th>{{row}}</th>
+        <th>move numb</th>
+        <th>player 1</th>
+        <th>player 2</th>
     </tr>
+    {% for row in movelist %}
+        <tr>
+            <th class = "{{ loop.cycle('white', 'black') }}" >{{row}}</th>
+        </tr>
     {% endfor %}
 </table>
 
