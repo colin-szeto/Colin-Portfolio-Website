@@ -12,27 +12,17 @@ board = {
 
 keysBoard, valuesBoard = zip(*board.items()) # isolates the board keys and board values
 
-routesList =[]# emply list to fill with "/key "
-imagesList =[]# list filled with the first two values of the key "BR" from "BR1n"
-imagesInList =[]# list to fill with images
-
-def preCursor(keys):# create the formaction list to pick from
-    a = 0
-    for x in keys:
-        input = str(keys[a])
-        final = "/" + input
-        routesList.append(final)
-        a = a+1
-    return routesList
-
-def sliceValues(values):# creates the list to translate into pieces
+imagesList = []
+def sliceColors(values):#creates the list to translate into pieces
     a = 0
     for x in values:
         input = str(values[a])
-        final = input[0:3]
-        imagesList.append(final)
+        final = input[0]
+        imagesList.append(final.upper())
         a = a + 1
     return imagesList
+
+color = sliceColors(valuesBoard)
 
 # the row dictonaries that the board is split out too
 board1 = {} #rank 1 (row 1) (closest to white)
