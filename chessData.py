@@ -10,12 +10,17 @@ board = {
     "a2": "wp1", "b2": "wp2", "c2": "wp3", "d2": "wp4", "e2": "wp5", "f2": "wp6", "g2": "wp7", "h2": "wp8",
     "a1": "WR1n", "b1": "WN1", "c1": "WB1", "d1": "WQ1", "e1": "WK1n", "f1": "WB2", "g1": "WN2", "h1": "WR2n"}
 
+piece = ["♜ ", "♞ ", "♝ ", "♛ ", "♚ ", "♟ ", "♜ ", "♞ ", "♝ ", "♛ ", "♚ ", "♟ "]
+
 #can you implement these messages below into the loose screen with jinja?
 lose = {"took the wrong turn", "squashed by an anvil", "fell too hard", "ate bad meat", "fell over"}
 
-keysBoard, values = zip(*board.items()) #isolates the board keys
+keysBoard, valuesBoard = zip(*board.items()) #isolates the board keys and board values
 
 routesList =[]#emply list to fill with "/key "
+imagesList =[]#list filled with the first two values of the key "BR" from "BR1n"
+imagesInList =[]#list to fill with images
+
 
 def preCursor(keys):#create the formaction list to pick from
     a = 0
@@ -26,18 +31,78 @@ def preCursor(keys):#create the formaction list to pick from
         a = a+1
     return routesList
 
+def sliceValues(values):#creates the list to translate into pieces
+    a = 0
+    for x in values:
+        input = str(values[a])
+        final = input[0:3]
+        imagesList.append(final)
+        a = a + 1
+    return imagesList
+
+def replaceValues(list):
+    for x in list:
+        if x == "BR":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/50px-Chess_rdt45.svg.png")#black rook
+        if x == "BN":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chess_ndt45.svg/50px-Chess_ndt45.svg.png")#black knight
+        if x == "BB":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Chess_bdt45.svg/50px-Chess_bdt45.svg.png")#black bishop
+        if x == "BQ":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Chess_qdt45.svg/50px-Chess_qdt45.svg.png")
+        if x == "BK":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Chess_kdt45.svg/50px-Chess_kdt45.svg.png")
+        if x == "bp":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Chess_pdt45.svg/50px-Chess_pdt45.svg.png")
+        if x == "WR":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt45.svg/50px-Chess_rlt45.svg.png")
+        if x == "WN":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt45.svg/50px-Chess_nlt45.svg.png")
+        if x == "WB":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt45.svg/50px-Chess_blt45.svg.png")
+        if x == "WQ":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt45.svg/50px-Chess_qlt45.svg.png")
+        if x == "WK":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt45.svg/50px-Chess_klt45.svg.png")
+        if x == "wp":
+            imagesInList.append("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt45.svg/50px-Chess_plt45.svg.png")
+        if x == "  ":
+            imagesInList.append(" ")
+
+"""
+def replaceValues(list):
+  for x in list:
+    if x == "BR":
+      imagesInList.append("♜")
+    if x == "BN":
+      imagesInList.append("♞")
+    if x == "BB":
+      imagesInList.append("♝")
+    if x == "BQ":
+      imagesInList.append("♛")
+    if x == "BK":
+      imagesInList.append("♚")
+    if x == "bp":
+      imagesInList.append("♟")
+    if x == "WR":
+      imagesInList.append("♜")
+    if x == "WN":
+      imagesInList.append("♞")
+    if x == "WB":
+      imagesInList.append("♝")
+    if x == "WQ":
+      imagesInList.append("♛")
+    if x == "WK":
+      imagesInList.append("♚")
+    if x == "wp":
+      imagesInList.append("♟")
+    if x == "  ":
+      imagesInList.append(" ")
+      """
 
 endRoutesList =[]#empty list to fill with "/id=c4/" not implemented yet
-"""
-def routeMaker(keys):#creates the paths that main.py has to create to respond to chessDict, this has not been immplemnted yet
-    a = 0
-    for x in keys:
-        input = str(keys[a])
-        final = "/id=" + input + "/"
-        routesList.append(final)
-        a = a+1
-    return endRoutesList"""
 
+#the row dictonaries that the board is split out two
 board1 = {}
 board2 = {}
 board3 = {}
@@ -47,7 +112,7 @@ board6 = {}
 board7 = {}
 board8 = {}
 
-for square,piece in board.items():
+for square,piece in board.items(): #spliting the dictonary into 8 dictonaries, if the second value within the cell "a8" is 8 then update the row of the board with that value
     if int(square[1]) == 1:
         board1.update({square:piece})
     elif int(square[1]) == 2:

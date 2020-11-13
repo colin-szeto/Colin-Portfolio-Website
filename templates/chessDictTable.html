@@ -12,12 +12,14 @@
         background-color: #4CAF50;
         border: none;
         color: white;
+        font-family: calibri, Helvetica, sans-serif;
         }
 
         .odd {
         background-color: #d6d3ba;
         border: none;
         color: black;
+        font-family: calibri, Helvetica, sans-serif;
         }
 
     </style>
@@ -44,8 +46,10 @@
         </tr>
         {% endfor %}
     </table>
-
 </form>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Chess_rdt45.svg/50px-Chess_rdt45.svg.png" alt = "black rook">
+
 {{ displayClicked }} <!-- this line is to communicate hints to the player -->
 
 <h1>{{ displayRoutes }}</h1> <!-- this line is for debuggin -->
