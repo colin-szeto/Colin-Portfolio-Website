@@ -4,7 +4,7 @@ import random
 from flask import Flask, render_template, request, redirect, url_for
 import data
 import chessData
-from chessData import board, keysBoard, movelist, sets, routesList, lose # endRoutesList
+from chessData import board, keysBoard, movelist, sets, imagesList, valuesBoard, imagesInList, routesList, lose # endRoutesList
 from chessData import allBoard #board1, board2, board3, board4, board5, board6, board7, board8,
 app = Flask(__name__)
 
@@ -97,7 +97,7 @@ def chessDictTable_route():
 def createBoardTable():
     if request.method == 'POST': #if the meathod is post
         form = request.form
-        movelist.clear()
+        movelist.clear()#resets the stored moves when create board is selected
         return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="", allBoard=allBoard)
         #board1=board1, board2=board2, board3=board3, board4=board4, board5=board5, board6=board6, board7=board7, board8=board8
     return redirect("/project/chessDictTable/") #redirects to format into the chess board
@@ -110,7 +110,7 @@ def returnClicked():
         return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="you clicked something", allBoard=allBoard)
     return redirect("/project/chessDictTable/")
 
-@app.route("/a8", methods=['GET','POST'])
+@app.route("/a8", methods=['GET','POST'])#--------------------------------------------------------------------------------------------------------------------------------------------------------------this is where it starts
 def a8():
     if request.method == 'POST':
         return render_template("chessDictTable.html", rowList=board, keyRoutes=chessData.preCursor(keysBoard), displayClicked="a8", allBoard=allBoard, movelist=chessData.movesdata("a8"), movesets=sets)

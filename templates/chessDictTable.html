@@ -40,13 +40,21 @@
         {%for row in allBoard%}
         <tr><!-- if row == board 5 -->
             {% if loop.index is divisibleby 2 %}
-                {% for header in row %} <!-- if the row is even, 8,6,4,2 -->
-                    <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value={{header}} inputName="firstButton" formaction={{header}}  id={{header}}/></th>
-                {% endfor %}
+                {% for header,unicode in row.items() %} <!-- if the row is even, 8,6,4,2 -->
+                    {% if unicode == "emptySpace" %}<!-- if there is emtySpace as the value of the dictonary -->
+                        <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value=&nbsp;&nbsp;&nbsp;&nbsp; inputName="firstButton" formaction={{header}} /></th>
+                    {%else%}
+                        <th><input  class = "{{ loop.cycle('even', 'odd') }}" type ="submit" value={{unicode}} inputName="firstButton" formaction={{header}} /></th>
+                    {% endif %}
+            {% endfor %}
             {% else %}
-                {% for header in row %}   <!-- if the row is odd, 7,5,3,1 -->
-                    <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value={{header}} inputName="firstButton" formaction={{header}}  id={{header}}/></th>
-                {% endfor %}
+                {% for header,unicode  in row.items() %}   <!-- if the row is odd, 7,5,3,1 -->
+                    {% if unicode == "emptySpace" %}<!-- if there is emtySpace as the value of the dictonary -->
+                        <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value=&nbsp;&nbsp;&nbsp;&nbsp; inputName="firstButton" formaction={{header}} /></th>
+                    {%else%}
+                        <th><input  class = "{{ loop.cycle('odd', 'even') }}" type ="submit" value={{unicode}} inputName="firstButton" formaction={{header}} /></th>
+                    {% endif %}
+            {% endfor %}
             {% endif %}
         </tr>
         {% endfor %}
