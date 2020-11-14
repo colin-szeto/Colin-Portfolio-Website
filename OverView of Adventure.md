@@ -1,5 +1,7 @@
 # Adventure using POST Overview: https://bit.ly/3khB2JI 
 
+as of 11/13/20 the code descpribed below has beeen ceased recieving support and development and is no longer active in the current verison of the repository. Please see links below and the video provided above to understand the highlevel and then the low level concepts of the project
+
 the objective of this document is to provide a framework and explanation of a flashy piece of code which will allow students to see an application using post client side (without communicating to the server). Expected understanding of routes, jinja, integration of python and html. Please excuse any spelling mistakes.
 
 * here is a video overviewing the basics of POST: https://bit.ly/35fw1gt
