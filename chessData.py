@@ -12,7 +12,7 @@ board = {
 
 keysBoard, valuesBoard = zip(*board.items()) # isolates the board keys and board values
 
-imagesList = []
+"""imagesList = []
 def sliceColors(values):#creates the list to translate into pieces
     a = 0
     for x in values:
@@ -22,7 +22,7 @@ def sliceColors(values):#creates the list to translate into pieces
         a = a + 1
     return imagesList
 
-color = sliceColors(valuesBoard)
+color = sliceColors(valuesBoard)"""
 
 # the row dictonaries that the board is split out too
 board1 = {} #rank 1 (row 1) (closest to white)
@@ -35,7 +35,7 @@ board7 = {}
 board8 = {} #rank 8 (row 8) (farthest from white)
 
 listBoard = ["", board1, board2, board3, board4, board5, board6, board7, board8] # inluded "" to artificialy overcome the 0 index
-dictionarything = {"BR": "♜", "BN": "♞", "BB": "♝", "BQ": "♛", "BK": "♚", "bp": "♟", "WR": "♜", "WN": "♞", "WB": "♝", "WQ": "♛", "WK": "♚", "wp": "♟"}
+dictionarything = {"BR": "♜", "BN": "♞", "BB": "♝", "BQ": "♛", "BK": "♚", "bp": "♟︎️︎", "WR": "♖", "WN": "♘", "WB": "♗", "WQ": "♕", "WK": "♔", "wp": "♙"}
 
 # spliting the dictonary into 8 dictonaries, if the second value within the cell "a8" is 8 then update the row of the board with that value
 for square,piece in board.items():

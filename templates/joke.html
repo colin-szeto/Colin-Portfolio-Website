@@ -1,0 +1,18 @@
+{% extends "taskbase.html" %}
+
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jack</title>
+</head>
+    <body>
+        <h1>Random Joke</h1>
+        <p>{{setup}}</p>
+        <p>{{punchline}}</p>
+    <form meathod="POST" ID="myJoke" action={{url_for('.joke')}}>
+        <input type="submit" value="New Joke">
+    </form>
+
+</body>
+{% endblock %}

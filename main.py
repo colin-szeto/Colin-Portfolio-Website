@@ -1,10 +1,10 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
 import random
-
+import requests
 from flask import Flask, render_template, request, redirect, url_for
 import data
 import chessData
-from chessData import board, keysBoard, movelist, sets,  valuesBoard, imagesList, color
+from chessData import board, keysBoard, movelist, sets,  valuesBoard
 from chessData import allBoard #board1, board2, board3, board4, board5, board6, board7, board8,
 app = Flask(__name__)
 
@@ -42,6 +42,20 @@ def yourName():
         return render_template("yourName.html", display = allName) #feeds it back into the template using jinja
     return redirect("/yourName")#redirects the user back to the page where they entered in the form
 #---------------------------------------------------------------------------------------
+# lots of other code #
+
+@app.route('/joke/', methods=['GET', 'POST'])
+def joke():
+    # call to random joke web api
+    url = 'https://official-joke-api.appspot.com/jokes/programming/random'
+    resp = requests.get(url)
+
+    # formatting variables from return
+    setup = resp.json()[0]['setup']
+    punchline = resp.json()[0]['punchline']
+
+    return render_template('joke.html', setup = setup, punchline = punchline)
+
 
 @app.route("/project/string/")
 def string_route():
@@ -98,7 +112,7 @@ def createBoardTable():
     if request.method == 'POST': #if the meathod is post
         form = request.form
         movelist.clear()#resets the stored moves when create board is selected
-        return render_template("chessDictTable.html", rowList=board,  displayClicked="  ", allBoard=allBoard, color=color)
+        return render_template("chessDictTable.html", rowList=board,  displayClicked="  ", allBoard=allBoard)
         #board1=board1, board2=board2, board3=board3, board4=board4, board5=board5, board6=board6, board7=board7, board8=board8
     return redirect("/project/chessDictTable/") #redirects to format into the chess board
 
@@ -113,7 +127,7 @@ def returnClicked():
 @app.route("/a8", methods=['GET','POST'])#--------------------------------------------------------------------------------------------------------------------------------------------------------------this is where it starts
 def a8():
     if request.method == 'POST':
-        return render_template("chessDictTable.html", rowList=board,  displayClicked="a8", allBoard=allBoard, movelist=chessData.movesdata("a8"), movesets=sets, color=chessData.sliceColors(valuesBoard))
+        return render_template("chessDictTable.html", rowList=board,  displayClicked="a8", allBoard=allBoard, movelist=chessData.movesdata("a8"), movesets=sets)
     return redirect("/project/chessDictTable/")
 @app.route("/a7", methods=['GET','POST'])
 def a7():
@@ -153,7 +167,7 @@ def a1():
 @app.route("/b8", methods=['GET','POST'])
 def b8():
     if request.method == 'POST':
-        return render_template("chessDictTable.html", rowList=board,  displayClicked="b8", allBoard=allBoard, movelist=chessData.movesdata("b8"), movesets=sets, color=chessData.sliceColors(valuesBoard))
+        return render_template("chessDictTable.html", rowList=board,  displayClicked="b8", allBoard=allBoard, movelist=chessData.movesdata("b8"), movesets=sets)
     return redirect("/project/chessDictTable/")
 @app.route("/b7", methods=['GET','POST'])
 def b7():
