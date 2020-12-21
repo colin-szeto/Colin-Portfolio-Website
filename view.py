@@ -2,7 +2,7 @@
 import random
 import requests
 from flask import Flask, render_template, request, redirect, url_for
-import data
+import model
 import chessData
 from chessData import board, keysBoard, movelist, sets,  valuesBoard
 from chessData import allBoard #board1, board2, board3, board4, board5, board6, board7, board8,
@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     #function use Flask import (Jinga) to render an HTML template
-    return render_template("home.html", data=data.ship(), data2=data.chessOO(), data3=data.billards())
+    return render_template("home.html", data=model.ship(), data2=model.chessOO(), data3=model.billards())
 
 @app.route('/gallery')
 def gallery():
@@ -80,31 +80,31 @@ def joke():
 
 @app.route("/project/string/")
 def string_route():
-    return render_template("task.html", data=data.string())
+    return render_template("task.html", data=model.string())
 
 @app.route("/project/billards/")
 def billards_route():
-    return render_template("task.html", data=data.billards())
+    return render_template("task.html", data=model.billards())
 
 @app.route("/project/ship/")
 def ship_route():
-    return render_template("task.html", data=data.ship())
+    return render_template("task.html", data=model.ship())
 
 @app.route("/project/chessOO/")
 def chessOO_route():
-    return render_template("task.html", data=data.chessOO())
+    return render_template("task.html", data=model.chessOO())
 
 @app.route("/project/pawnANI/")
 def pawnANI_route():
-    return render_template("task.html", data=data.pawnANI())
+    return render_template("task.html", data=model.pawnANI())
 
 @app.route("/project/oldWeb/")
 def oldWeb_route():
-    return render_template("task.html", data=data.oldWebsite())
+    return render_template("task.html", data=model.oldWebsite())
 
 @app.route("/project/chessDrag/")
 def chessDrag_route():
-    return render_template("task.html", data=data.chessDrag())
+    return render_template("task.html", data=model.chessDrag())
 
 @app.route("/project/login/", methods=['GET','POST']) #this is is where the website directs to when clicking the submit button
 def login():
@@ -122,7 +122,7 @@ def user(usr):
 
 @app.route("/all/")
 def all_route():
-    return render_template("taskall.html", datalist=data.alldata())
+    return render_template("taskall.html", datalist=model.alldata())
 
 @app.route("/project/chessDictTable/") # this gets the user to the chess board
 def chessDictTable_route():
