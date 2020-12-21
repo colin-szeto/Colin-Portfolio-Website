@@ -1,5 +1,6 @@
 # https://flask.palletsprojects.com/en/1.1.x/api/
 import random
+import inventory_data
 import requests
 from flask import Flask, render_template, request, redirect, url_for
 import model
@@ -17,7 +18,7 @@ def home():
 @app.route('/gallery')
 def gallery():
     #function use Flask import (Jinga) to render an HTML template
-    return render_template("gallery.html")
+    return render_template("gallery.html", inventory_list=inventory_data.inventory_items())
 
 @app.route('/chessGame/')
 def chessGame():
