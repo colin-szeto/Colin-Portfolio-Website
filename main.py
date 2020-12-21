@@ -14,6 +14,11 @@ def home():
     #function use Flask import (Jinga) to render an HTML template
     return render_template("home.html", data=data.ship(), data2=data.chessOO(), data3=data.billards())
 
+@app.route('/gallery')
+def gallery():
+    #function use Flask import (Jinga) to render an HTML template
+    return render_template("gallery.html")
+
 @app.route('/chessGame/')
 def chessGame():
     #function use Flask import (Jinga) to render an HTML template
@@ -55,6 +60,22 @@ def joke():
     punchline = resp.json()[0]['punchline']
 
     return render_template('joke.html', setup = setup, punchline = punchline)
+
+@app.route("/clothingAPI/")#for the dragable chess file
+def clothingAPI():
+    return render_template("clothingAPI.html")
+
+"""@app.route('/joke/', methods=['GET', 'POST'])
+def joke():
+    # call to random joke web api
+    url = 'https://official-joke-api.appspot.com/jokes/programming/random'
+    resp = requests.get(url)
+
+    # formatting variables from return
+    setup = resp.json()[0]['setup']
+    punchline = resp.json()[0]['punchline']
+
+    return render_template('joke.html', setup = setup, punchline = punchline)"""
 
 
 @app.route("/project/string/")
